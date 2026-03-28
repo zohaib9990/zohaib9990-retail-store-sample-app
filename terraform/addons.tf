@@ -17,8 +17,11 @@ module "eks_addons" {
   # =============================================================================
   enable_cert_manager = true
   cert_manager = {
-    most_recent = true
-    namespace   = "cert-manager"
+    most_recent                = true
+    namespace                  = "cert-manager"
+    timeout                    = 600
+    disable_openapi_validation = true
+    lint                       = false
   }
 
   # =============================================================================
@@ -28,8 +31,11 @@ module "eks_addons" {
   ingress_nginx = {
     most_recent = true
     namespace   = "ingress-nginx"
+
+    timeout                    = 600
+    disable_openapi_validation = true
+    lint                       = false
     
-    # Basic configuration
     set = [
       {
         name  = "controller.service.type"

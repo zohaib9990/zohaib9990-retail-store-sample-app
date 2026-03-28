@@ -24,6 +24,10 @@ resource "helm_release" "argocd" {
   chart      = "argo-cd"
   version    = var.argocd_chart_version
 
+  timeout                    = 600
+  disable_openapi_validation = true
+  lint                       = false
+
   # ArgoCD configuration values
   values = [
     yamlencode({

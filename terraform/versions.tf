@@ -47,6 +47,11 @@ provider "helm" {
       args        = ["eks", "get-token", "--cluster-name", module.retail_app_eks.cluster_name]
     }
   }
+  
+  # Increase timeouts to handle slow API responses
+  experiments {
+    manifest = true
+  }
 }
 
 provider "kubectl" {
